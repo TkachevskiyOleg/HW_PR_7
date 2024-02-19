@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .color-block {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            margin: 15px;
+            cursor: pointer;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .color-block:hover {
+            box-shadow: 10px 0px 5px #888888;
+        }
+
+        p {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="ColorBlocks" onselectstart="return false"></div>
+    <button onclick="addColorBlock()">Add color block</button>
+    <p id="ColorText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+        et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+        laborum.</p>
+
+    <a href="index1.html">1</a>
+    <a href="index4.html">4</a>
+    <a href="index5.html">5</a>
+    <a href="index6.html">6</a>
+    <a href="index7.html">7</a>
+
+    <script>
+        let selectedColor = null;
+
+        function generateColor() {
+            let text = "";
+            let possible = "0123456789ABCDEF";
+
+            for (let i = 0; i < 6; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+            return "#" + text;
+        }
+
+        function addColorBlock() {
+            const colorBlocksContainer = document.getElementById("ColorBlocks");
+            const color = generateColor();
+
+            const colorBlock = document.createElement('div');
+            const colorText = document.createElement('p');
+            colorText.textContent = color;
+            colorText.style.color = "White";
+            colorBlock.className = 'color-block';
+            colorBlock.style.background = color;
+            colorBlock.onclick = () => { changeColor(color); };
+            colorBlocksContainer.appendChild(colorBlock);
+            colorBlock.appendChild(colorText);
+
+            selectedColor = color;
+
+            colorBlock.addEventListener('dblclick', function () {
+                colorBlocksContainer.removeChild(colorBlock);
+            });
+        }
+
+        function changeColor(color) {
+            const text = document.getElementById('ColorText');
+            text.style.color = color;
+
+            selectedColor = color;
+        }
+    </script>
+</body>
+
+</html>

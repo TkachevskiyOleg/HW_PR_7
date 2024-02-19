@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #countryInput {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #suggestionsList {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 150px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        .suggestion {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .suggestion:hover {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+
+<body>
+
+    <label for="countryInput">Write country:</label>
+    <input type="text" id="countryInput" oninput="showSuggestions()" autocomplete="off">
+
+    <ul id="suggestionsList"></ul>
+
+    <a href="index1.html">1</a>
+    <a href="index2-3.html">2-3</a>
+    <a href="index5.html">5</a>
+    <a href="index6.html">6</a>
+    <a href="index7.html">7</a>
+
+    <script>
+        const countries = [
+            'Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola',
+            'Argentina', 'Armenia', 'Australia', 'Austria', 'Azerbaijan',
+            'Bangladesh', 'Belarus', 'Belgium', 'Brazil', 'Bulgaria',
+            'Canada', 'China', 'Colombia', 'Croatia', 'Czech Republic',
+            'Denmark', 'Egypt', 'Finland', 'France', 'Germany',
+            'Greece', 'Hungary', 'India', 'Indonesia', 'Iran',
+            'Italy', 'Japan', 'Mexico', 'Netherlands', 'New Zealand',
+            'Norway', 'Poland', 'Portugal', 'Russia', 'Spain',
+            'Sweden', 'Switzerland', 'United Kingdom', 'United States',
+            'Ukraine', 'South Africa'
+        ];
+
+
+        function showSuggestions() {
+            const input = document.getElementById('countryInput');
+            const suggestionsList = document.getElementById('suggestionsList');
+
+            const inputValue = input.value.trim().toLowerCase();
+            const filteredCountries = countries.filter(country =>
+                country.toLowerCase().includes(inputValue)
+            ).slice(0, 10);
+
+            renderSuggestions(filteredCountries);
+        }
+
+        function renderSuggestions(suggestions) {
+            const suggestionsList = document.getElementById('suggestionsList');
+            suggestionsList.innerHTML = '';
+
+            suggestions.forEach(suggestion => {
+                const listItem = document.createElement('li');
+                listItem.className = 'suggestion';
+                listItem.textContent = suggestion;
+                listItem.onclick = function () {
+                    document.getElementById('countryInput').value = suggestion;
+                    suggestionsList.innerHTML = '';
+                };
+
+                suggestionsList.appendChild(listItem);
+            });
+        }
+
+        document.addEventListener('click', function (event) {
+            const suggestionsList = document.getElementById('suggestionsList');
+            if (event.target !== suggestionsList && !suggestionsList.contains(event.target)) {
+                suggestionsList.innerHTML = '';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

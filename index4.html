@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        article {
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .user-comments {
+            margin-top: 20px;
+        }
+
+        .user-comment {
+            margin-bottom: 10px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        a {
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+    <article>
+        <h2>Article</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Etiam tempor orci eu lobortis elementum. Semper auctor neque vitae tempus quam pellentesque.
+            Ornare aenean euismod elementum nisi quis eleifend. Tempor orci eu lobortis elementum nibh tellus molestie
+            nunc. Viverra orci sagittis eu volutpat odio facilisis mauris sit amet. Egestas congue quisque egestas diam.
+            Mattis pellentesque  nibh tortor. Dictum non consectetur a erat nam at lectus. Bibendum arcu
+            vitae
+            elementum curabitur vitae nunc sed velit dignissim. A condimentum vitae sapien pellentesque habitant morbi
+            tristique senectus et. Tortor consequat id porta nibh venenatis. Felis donec et odio pellentesque diam
+            volutpat commodo sed egestas.
+
+            Tincidunt arcu non sodales neque sodales ut etiam sit amet. Morbi quis commodo odio aenean sed adipiscing. A
+            erat nam at lectus urna duis convallis convallis. Cursus eget nunc scelerisque viverra mauris in. At tempor
+            commodo ullamcorper a lacus vestibulum sed. Lectus proin nibh nisl condimentum id venenatis a condimentum.
+            Et ultrices neque ornare aenean euismod elementum nisi quis eleifend. Tellus at urna condimentum mattis
+            pellentesque id nibh tortor id. Arcu vitae elementum curabitur vitae nunc sed velit dignissim sodales.
+            Tellus cras adipiscing enim eu turpis. Augue lacus viverra vitae congue eu consequat. Vulputate mi sit amet
+            mauris commodo quis imperdiet massa tincidunt. Enim facilisis gravida neque convallis a cras semper auctor
+            neque. Lacinia at quis risus sed vulputate odio. Tincidunt arcu non sodales neque sodales. Mattis molestie a
+            iaculis at erat pellentesque. Amet cursus sit amet dictum. Tristique senectus et netus et malesuada fames ac
+        </p>
+    </article>
+
+    <div class="user-comments" id="userCommentsSection">
+        <h3>User Comments:</h3>
+    </div>
+
+    <form id="userCommentForm">
+        <h3>Add user comment:</h3>
+        <label for="userName">User name:</label>
+        <input type="text" id="userName" required>
+
+        <label for="userCommentText">User comment text:</label>
+        <textarea id="userCommentText" rows="4" required></textarea>
+
+        <button type="button" onclick="addUserComment()">Add user comment</button>
+    </form>
+    <a href="index1.html">1</a>
+    <a href="index2-3.html">2-3</a>
+    <a href="index5.html">5</a>
+    <a href="index6.html">6</a>
+    <a href="index7.html">7</a>
+    <script>
+        function addUserComment() {
+            const userNameInput = document.getElementById('userName');
+            const userCommentTextInput = document.getElementById('userCommentText');
+            const userCommentsSection = document.getElementById('userCommentsSection');
+
+            const userName = userNameInput.value;
+            const userCommentText = userCommentTextInput.value;
+
+            if (userName && userCommentText) {
+                const userCommentDiv = document.createElement('div');
+                userCommentDiv.className = 'user-comment';
+                userCommentDiv.innerHTML = `<strong>${userName}</strong> - ${getCurrentDate()}<p>${userCommentText}</p>`;
+
+                userCommentsSection.appendChild(userCommentDiv);
+
+                userNameInput.value = '';
+                userCommentTextInput.value = '';
+            } else {
+                alert('Please fill in all the fields of the form.');
+            }
+        }
+
+        function getCurrentDate() {
+            const currentDate = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+            return currentDate.toLocaleDateString('en-US', options);
+        }
+    </script>
+
+</body>
+
+</html>

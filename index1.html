@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input[type="text"] {
+            width: 50px;
+            text-align: center;
+            height: 50px;
+            font-size: 36px;
+        }
+
+        .number-container {
+            display: flex;
+        }
+
+        .arrow-container {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="number-container">
+        <input type="text" id="numberInput" readonly>
+        <div class="arrow-container">
+            <label onselectstart="return false" onclick="increment()">⬆</label>
+            <label onselectstart="return false" onclick="decrement()">⬇</label>
+        </div>
+    </div>
+    <a href="index2-3.html">2-3</a>
+    <a href="index4.html">4</a>
+    <a href="index5.html">5</a>
+    <a href="index6.html">6</a>
+    <a href="index7.html">7</a>
+
+    <script>
+        let numberInput = document.getElementById('numberInput');
+        let numValue = 0;
+
+        function increment() {
+            numValue++;
+            updateNumber();
+        }
+
+        function decrement() {
+            numValue--;
+            updateNumber();
+        }
+
+        function updateNumber() {
+            numberInput.value = numValue;
+        }
+    </script>
+
+</body>
+
+</html>

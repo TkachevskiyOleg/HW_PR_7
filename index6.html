@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input[type="button"] {
+            width: 50px;
+            height: 50px;
+            font-size: 18px;
+            margin: 5px;
+        }
+
+        .input {
+            height: 30px;
+            width: 240px;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td colspan="4"><input class="input" type="text" id="display" disabled></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="7" onclick="append('7')"></td>
+            <td><input type="button" value="8" onclick="append('8')"></td>
+            <td><input type="button" value="9" onclick="append('9')"></td>
+            <td><input type="button" value="/" onclick="appendOperator('/')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="4" onclick="append('4')"></td>
+            <td><input type="button" value="5" onclick="append('5')"></td>
+            <td><input type="button" value="6" onclick="append('6')"></td>
+            <td><input type="button" value="-" onclick="appendOperator('-')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="1" onclick="append('1')"></td>
+            <td><input type="button" value="2" onclick="append('2')"></td>
+            <td><input type="button" value="3" onclick="append('3')"></td>
+            <td><input type="button" value="+" onclick="appendOperator('+')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="0" onclick="append('0')"></td>
+            <td><input type="button" value="C" onclick="clearDisplay()"></td>
+            <td><input type="button" value="=" onclick="calculate()"></td>
+            <td><input type="button" value="*" onclick="appendOperator('*')"></td>
+        </tr>
+    </table>
+    <a href="index1.html">1</a>
+    <a href="index2-3.html">2-3</a>
+    <a href="index5.html">5</a>
+    <a href="index6.html">6</a>
+    <a href="index7.html">7</a>
+
+    <script>
+        let hasCalculated = false;
+
+        function append(value) {
+            if (hasCalculated) {
+                document.getElementById('display').value = value;
+                hasCalculated = false;
+            } else {
+                document.getElementById('display').value += value;
+            }
+        }
+
+        function appendOperator(operator) {
+            if (!hasCalculated) {
+                document.getElementById('display').value += operator;
+            }
+        }
+
+        function calculate() {
+            const display = document.getElementById('display');
+            display.value = eval(display.value);
+            hasCalculated = true;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+            hasCalculated = false;
+        }
+    </script>
+</body>
+
+</html>
